@@ -1,0 +1,1 @@
+export const goToAddMoney = (navigate) => { navigate("/add-money") }

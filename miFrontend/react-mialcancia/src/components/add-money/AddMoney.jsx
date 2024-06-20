@@ -1,36 +1,23 @@
 import { useState } from "react";
+import { handleCheckboxChange, values } from "./utils/AddMoneyUtils";
 
 export const AddMoney = () => {
   const [selectedValues, setSelectedValues] = useState([]);
+  const val = values;
 
-  const values = [10000, 20000, 50000, 100000, 200000];
+  const handleChange = (value) => { handleCheckboxChange(value, selectedValues, setSelectedValues)};
 
-  const handleCheckboxChange = (value) => {
-    setSelectedValues((prevSelectedValues) =>
-      prevSelectedValues.includes(value)
-        ? prevSelectedValues.filter((val) => val !== value)
-        : [...prevSelectedValues, value]
-    );
-  };
-
-  const handleSubmit = () => {
     // Aquí puedes manejar el envío de los valores seleccionados, por ejemplo, guardarlos en un estado global o enviarlos a un servidor
-    console.log("Valores seleccionados:", selectedValues);
-  };
+  const handleSubmit = () => { console.log("Valores seleccionados:", selectedValues)};
 
   return (
     <div>
       <h1>Ingresar Dinero</h1>
       <form>
-        {values.map((value) => (
+        {val.map((value) => (
           <div key={value}>
             <label>
-              <input
-                type="checkbox"
-                value={value}
-                checked={selectedValues.includes(value)}
-                onChange={() => handleCheckboxChange(value)}
-              />
+              <input type="checkbox" value={value} checked={selectedValues.includes(value)} onChange={() => handleChange(value)}/>
               {value}
             </label>
           </div>
